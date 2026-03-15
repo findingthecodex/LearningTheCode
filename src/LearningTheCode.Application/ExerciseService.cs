@@ -1,28 +1,41 @@
+using System.Runtime.CompilerServices;
 using LearningTheCode.Domain;
+using LearningTheCode.Application.Interfaces;
 
 namespace LearningTheCode.Application;
 
 public class ExerciseService
 {
-    // List to hold our exercises
-    private readonly List<Exercise> _exercises = new();
+    // Interface kontraktet
+    private readonly IExerciseRepository _repository;
 
-    // Method to add a new exercise
+    // konstruktor - Säger "För att jag ska starta, måste jag få något som följer IExerciseRepository"
+    public ExerciseService(IExerciseRepository repository)
+    {
+        _repository = repository;
+    }
+    
+    // Sparar till repository
     public void AddExercise(Exercise exercise)
     {
-        _exercises.Add(exercise);
+        _repository.Add(exercise);
     }
     
-    // Method to get all exercises (example show a list)
+    // Hämtar listan från repositoryt
     public List<Exercise> GetAllExercises()
     {
-        return _exercises;
+        return _repository.GetAll();
     }
-    
+        
     // A method to check answer - logic belongs in Application
     public bool CheckAnswer(Exercise exercise, string userAnswer)
     {
+        if (string.IsNullOrWhiteSpace(userAnswer)) return false;
+
+        string cleanCorrect = exercise.CorrectAnswer.Replace(" ", "").Trim();
+        string cleanUser = userAnswer.Replace(" ", "").Trim();
+        
         // Check answer - trims the answer if user types with ex space
-        return exercise.CorrectAnswer.Trim().Equals(userAnswer.Trim(), StringComparison.OrdinalIgnoreCase);
+        return cleanCorrect.Equals(cleanUser, StringComparison.OrdinalIgnoreCase);
     }
 }
