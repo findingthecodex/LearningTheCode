@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LearningTheCode.Application\LearningTheCode.Application.csproj" />
     <ProjectReference Include="..\LearningTheCode.Domain\LearningTheCode.Domain.csproj" />
+    <ProjectReference Include="..\LearningTheCode.Infrastructure\LearningTheCode.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
