@@ -1,121 +1,69 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [view, setView] = useState('home');
 
+  // --- 1. STARTSIDAN ---
+  if (view === 'home') {
+    return (
+        <div className="splash-container">
+          <main className="splash-content">
+            <div className="logo-wrapper">
+              <span className="logo-icon">🚀</span>
+              <h1 className="logo-text">Learning<span className="accent">The</span>Code</h1>
+            </div>
+            <p className="tagline">Ditt första steg mot att lära dig koda.</p>
+            <button className="get-started-btn" onClick={() => setView('pick-language')}>
+              Börja lära dig nu →
+            </button>
+          </main>
+        </div>
+    );
+  }
+
+  // --- 2. VÄLJ SPRÅK-SIDAN ---
+  if (view === 'pick-language') {
+    return (
+        <div className="splash-container">
+          <main className="splash-content">
+            <h2 className="view-title">Vad vill du lära dig idag?</h2>
+            <div className="language-grid">
+              <div className="language-card highlight" onClick={() => setView('csharp-lessons')}>
+                <div className="lang-icon">#️⃣</div>
+                <h3>C#</h3>
+                <p>Lär dig grunderna i Objektorienterad Programmering</p>
+                <button className="select-btn">Välj C#</button>
+              </div>
+              <div className="language-card disabled">
+                <div className="lang-icon">⚛️</div>
+                <h3>React</h3>
+                <p>Kommer snart...</p>
+              </div>
+            </div>
+            <button className="back-link" onClick={() => setView('home')}>← Gå tillbaka</button>
+          </main>
+        </div>
+    );
+  }
+
+  // --- 3. C# LEKTIONS-SIDA ---
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <div className="splash-container">
+        <main className="splash-content">
+          <h2 className="view-title">Välkommen till C# Basics</h2>
+          <div className="course-content">
+            <p>Här börjar din resa. Välj ett kapitel:</p>
+            <ul className="chapter-list">
+              <li>1. Introduktion till C#</li>
+              <li>2. Vad är Variabler?</li>
+              <li>3. Klasser och Objekt</li>
+            </ul>
+          </div>
+          <button className="back-link" onClick={() => setView('pick-language')}>← Tillbaka till språk</button>
+        </main>
+      </div>
+  );
 }
 
 export default App
