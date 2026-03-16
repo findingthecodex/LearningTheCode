@@ -11,4 +11,6 @@ public class Exercise
     public string CodeSnippet { get; set; } = string.Empty;
     public string CorrectAnswer { get; set; } = string.Empty;
     public int Difficulty { get; set; }
+    public string? Question { get; set; }
+    public string? Answer { get; set; }
 }
